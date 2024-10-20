@@ -8,7 +8,7 @@ image:
   repository: registry.darkfalcone.com/root/docker-basic
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: main
+  tag: ead3c791
 
 imagePullSecrets: gitlab-registry
 nameOverride: ""
