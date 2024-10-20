@@ -10,7 +10,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ead3c791
 
-imagePullSecrets: gitlab-registry
+imagePullSecrets:
+    - name: gitlab-registry
 nameOverride: ""
 fullnameOverride: ""
 
