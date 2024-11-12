@@ -20,6 +20,7 @@ Change the argocd-server service type to NodePort:
 
     kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 OR
+
     kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 
 ### 2. Set Up SSL and Ingress
@@ -33,31 +34,31 @@ Prepare your SSL certificate (tls.crt) and private key (tls.key) files, and crea
 
 Create an Ingress Resource
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd-server-ingress
-  namespace: argocd
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: argocd.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              name: https
-  tls:
-  - hosts:
-    - argocd.example.com 
-    secretName: argocd-tls # as expected by argocd-server
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+    name: argocd-server-ingress
+    namespace: argocd
+    annotations:
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    spec:
+    ingressClassName: nginx
+    rules:
+    - host: argocd.example.com
+        http:
+        paths:
+        - path: /
+            pathType: Prefix
+            backend:
+            service:
+                name: argocd-server
+                port:
+                name: https
+    tls:
+    - hosts:
+        - argocd.example.com 
+        secretName: argocd-tls # as expected by argocd-server
 
 Apply the Ingress resource
 
@@ -65,7 +66,7 @@ Apply the Ingress resource
 
 To access ArgoCD over HTTPS:
 
-* Update DNS: Ensure that argocd.darkfalcone.com points to your Kubernetes Ingress controller's external IP.
+* Update DNS: Ensure that argocd.example.com points to your Kubernetes Ingress controller's external IP.
 
 * Login to ArgoCD: The default username is admin. To retrieve the initial password, run:
 
