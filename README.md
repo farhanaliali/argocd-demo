@@ -43,22 +43,22 @@ Create an Ingress Resource
         nginx.ingress.kubernetes.io/ssl-passthrough: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     spec:
-    ingressClassName: nginx
-    rules:
-    - host: argocd.example.com
-        http:
-        paths:
-        - path: /
-            pathType: Prefix
-            backend:
-            service:
+        ingressClassName: nginx
+        rules:
+        - host: argocd.example.com
+          http:
+           paths:
+            - path: /
+           pathType: Prefix
+           backend:
+              service:
                 name: argocd-server
                 port:
-                name: https
-    tls:
-    - hosts:
-        - argocd.example.com 
-        secretName: argocd-tls # as expected by argocd-server
+                 name: https
+        tls:
+         - hosts:
+            - argocd.example.com 
+           secretName: argocd-tls # as expected by argocd-server
 
 Apply the Ingress resource
 
