@@ -5,13 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: registry.darkfalcone.com/root/docker-basic
+  repository: farhanluckali/node-helloworld
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: a425cbcd
-
-imagePullSecrets:
-    - name: gitlab-registry
+  tag: latest
 nameOverride: ""
 fullnameOverride: ""
 
