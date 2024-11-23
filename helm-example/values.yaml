@@ -8,7 +8,7 @@ image:
   repository: farhanluckali/node-helloworld
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: ef2573c
 nameOverride: ""
 fullnameOverride: ""
 
